@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal";
 import CartContext from "../store/cart-context";
 import CartItem from "./CartItem";
+
 function Cart(props) {
   const cartCtx = useContext(CartContext);
 
@@ -12,8 +13,23 @@ function Cart(props) {
     cartCtx.removeItem(id);
   };
   const cartItemAddHandler = (item) => {
+    console.log(item);
     cartCtx.addItem({ ...item, amount: 1 });
   };
+  useEffect(() => {
+    console.log("useEffect triggered");
+    if (false) {
+      const localObj = {
+        items: cartCtx.items,
+        totalAmount: cartCtx.totalAmount.toFixed(2),
+      };
+      localStorage.setItem("items", JSON.stringify(localObj));
+    }
+    const obj ={items: cartCtx.items, totalAmount: cartCtx.totalAmount}
+    localStorage.setItem("items", JSON.stringify(obj));
+    
+    console.log(JSON.parse(localStorage.getItem("items")));
+  }, [cartCtx.items, cartCtx.totalAmount]);
 
   const cartItems = (
     <ul className={classes["cart-items"]}>

@@ -19,6 +19,7 @@ function HeaderCartButton(props) {
     if (items.length === 0) {
       return;
     }
+    
     setBtnIsHighlighted(true);
 
     const timer = setTimeout(() => {
