@@ -18,17 +18,12 @@ function Cart(props) {
   };
   useEffect(() => {
     console.log("useEffect triggered");
-    if (false) {
-      const localObj = {
-        items: cartCtx.items,
-        totalAmount: cartCtx.totalAmount.toFixed(2),
-      };
-      localStorage.setItem("items", JSON.stringify(localObj));
-    }
-    const obj ={items: cartCtx.items, totalAmount: cartCtx.totalAmount}
+
+    const obj = {
+      items: cartCtx.items,
+      totalAmount: cartCtx.totalAmount.toFixed(2),
+    };
     localStorage.setItem("items", JSON.stringify(obj));
-    
-    console.log(JSON.parse(localStorage.getItem("items")));
   }, [cartCtx.items, cartCtx.totalAmount]);
 
   const cartItems = (
