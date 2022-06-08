@@ -6,8 +6,8 @@ import CartItem from "./CartItem";
 
 function Cart(props) {
   const cartCtx = useContext(CartContext);
-
-  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+  console.log(cartCtx.totalAmount)
+  const totalAmount ='$'+Math.round(cartCtx.totalAmount);
   const hasItems = cartCtx.items.length > 0;
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
@@ -21,7 +21,7 @@ function Cart(props) {
 
     const obj = {
       items: cartCtx.items,
-      totalAmount: cartCtx.totalAmount.toFixed(2),
+      totalAmount: cartCtx.totalAmount
     };
     localStorage.setItem("items", JSON.stringify(obj));
   }, [cartCtx.items, cartCtx.totalAmount]);
