@@ -19,11 +19,7 @@ function Cart(props) {
   useEffect(() => {
     console.log("useEffect triggered");
 
-    const obj = {
-      items: cartCtx.items,
-      totalAmount: cartCtx.totalAmount
-    };
-    localStorage.setItem("items", JSON.stringify(obj));
+   
   }, [cartCtx.items, cartCtx.totalAmount]);
 
   const cartItems = (

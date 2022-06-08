@@ -1,13 +1,20 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import classes from "./MealItemForm.module.css";
 import Input from "../../UI/Input";
+import CartContext from "../../store/CartContext";
 
 function MealItemForm(props) {
+  const cartCtx = useContext(CartContext);
   const amountInputRef = useRef();
   const [amountIsValid, setAmountIsValid] = useState(true);
 
   const submitHandler = (event) => {
     event.preventDefault();
+    const obj = {
+      items: cartCtx.items,
+      totalAmount: cartCtx.totalAmount,
+    };
+    localStorage.setItem("items", JSON.stringify(obj));
 
     const enteredAmount = amountInputRef.current.value;
     const enteredAmountNumber = +enteredAmount;
@@ -39,7 +46,7 @@ function MealItemForm(props) {
         }}
       />
       <button>+ Add</button>
-        {!amountIsValid && <p>Please Enter a value amount (1-5).</p>}
+      {!amountIsValid && <p>Please Enter a value amount (1-5).</p>}
     </form>
   );
 }
