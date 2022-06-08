@@ -63,7 +63,7 @@ function CartProvider(props) {
     cartReducer,
     defaultCartState, ()=>{
       const myItems = localStorage.getItem('items');
-      return myItems? JSON.parse(myItems) : [];
+      return myItems? JSON.parse(myItems) : defaultCartState;
     }
   );
 
